@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class name="Bean.HouseBean" table="house">
+  <id name="id" type="java.lang.Integer">
+     <column name="id"/>
+     <generator class="native">
+     </generator>
+  </id> 
+  
+  <many-to-one name="type" class="Bean.TypeBean">
+    <column name="type_id"></column>
+  </many-to-one>
+  
+  <many-to-one name="user" class="Bean.UserBean">
+     <column name="user_id"></column>
+  </many-to-one>
+  
+  <many-to-one name="street" class="Bean.StreetBean">
+    <column name="street_id"></column>
+  </many-to-one>
+  
+  <property name="title" type="java.lang.String">
+    <column name="title" not-null="true" />
+  </property>
+  
+  <property name="description" type="java.lang.String" lazy="true">
+    <column name="description" not-null="true" />
+  </property>
+  
+  <property name="date" type="java.util.Date">
+    <column name="date" not-null="true" />
+  </property>
+  
+  <property name="price" type="java.lang.Double">
+    <column name="price" not-null="true" />
+  </property>
+  
+  <property name="contact" type="java.lang.String">
+    <column name="contact" not-null="true" />
+  </property>
+  
+  <property name="floorate" type="java.lang.Double">
+    <column name="floorate"></column>
+  </property>
+  
+  <!--
+  <property name="house_date" type="java.util.Date">
+    <column name="house_date"></column>
+  </property>
+  -->
+ </class>
+</hibernate-mapping>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+    <constant name="sturts.ui.theme" value="simple"></constant>
+
+	<package name="default" namespace="/" extends="struts-default">  
+	
+	    <interceptors> 
+	        <interceptor name="UserIterception" class="Interceptor.UserIterceptor"></interceptor>  
+	    </interceptors>  
+	    
+	    <global-results>
+	        <result name="input">/Login.jsp</result>
+	    </global-results>
+	        
+	    
+		<action name="*User" class="action.UserAction" method="{1}"> 
+		    <result name="input" type="redirect">/{1}.jsp</result>
+			<result name="success" type="redirectAction">${nextpage}</result>
+			<result name="error">/Register.jsp</result>	
+		</action>
+		
+		<action name="user" class="action.User">
+		    <result name="success">/Index.jsp</result>
+		</action>
+		
+		<action name="admin" class="action.AdminAction">
+		    <result name="success">/Management.jsp</result>
+		</action>
+		
+		<action name="index" class="action.Index">
+		    <result name="success">/Index.jsp</result>
+		</action>
+		
+		<action name="ReadHouse" class="action.ReadHouse" method="read">
+		    <result name="success">/House_Info.jsp</result>
+		</action>
+		
+		<action name="Add_house" class="action.Add_House" >  
+		    <result name="success">/Add_House.jsp</result>
+		    <interceptor-ref name="defaultStack"></interceptor-ref>
+		    <interceptor-ref name="UserIterception"></interceptor-ref>
+		</action>
+		
+		<action name="QueryHouse" class="action.QueryHouse">
+		    <result name="success">/QueryResult.jsp</result>
+		</action>
+		
+		<action name="login2" class="action.Login2">
+		    <result name="success">/Index.jsp</result>
+		    <result name="input">/Index.jsp</result>
+		    <result name="ajaxLogin">/Login_Message.jsp</result>
+		</action>
+		
+		<action name="house" class="action.HouseAction" method="addHouse">
+		    <result name="success">/Add_House.jsp</result>
+		</action>
+	</package>
+		
+</struts>
